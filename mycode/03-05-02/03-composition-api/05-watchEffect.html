@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>watchEffect</title>
+</head>
+<body>
+<div id="app">
+  <button @click="increase">increase</button>
+  <button @click="stop">stop</button>
+  <br>
+  {{ count }}
+</div>
+
+<script type="module">
+  import { createApp, ref, watchEffect } from './static/vue.esm-browser.js'
+
+  createApp({
+    setup () {
+      const count = ref(0)
+      const stop = watchEffect(() => {
+        console.log(count.value)
+      })
+
+      return {
+        count,
+        stop,
+        increase: () => {
+          count.value++
+        },
+      }
+    },
+  }).mount('#app')
+</script>
+</body>
+</html>
