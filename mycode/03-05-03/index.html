@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reactive</title>
+</head>
+<body>
+
+<script type="module">
+  import { reactive } from './reactivity/index.js'
+
+  const obj = reactive({
+    name: 'tom',
+    age: 18,
+  })
+
+  console.log(obj)
+
+  obj.name = 'jack'
+  delete obj.age
+
+  console.log(obj)
+
+</script>
+
+</body>
+</html>

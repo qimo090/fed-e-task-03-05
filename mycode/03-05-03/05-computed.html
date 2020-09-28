@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Effect</title>
+</head>
+<body>
+<div>
+    Effect
+</div>
+<script type="module">
+  // import { reactive, effect } from './libs/reactivity.esm-browser.js'
+  import { reactive, effect, computed } from './reactivity'
+
+  const product = reactive({
+    name: 'iPhone',
+    price: 5000,
+    count: 3,
+  })
+
+  let total = computed(() => {
+    return product.price * product.count
+  })
+  console.log(total.value)
+
+  product.price = 4000
+  console.log(total.value)
+
+  product.count = 1
+  console.log(total.value)
+
+</script>
+</body>
+</html>

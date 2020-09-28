@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy</title>
+</head>
+<body>
+<script>
+  'use strict'
+  // const target = {
+  //   foo: 'xxx',
+  //   bar: 'yyy',
+  // }
+  //
+  // const proxy = new Proxy(target, {
+  //   get (target, p, receiver) {
+  //     return Reflect.get(target, p, receiver)
+  //   },
+  //   set (target, p, value, receiver) {
+  //     return Reflect.set(target, p, value, receiver)
+  //   },
+  //   deleteProperty (target, p) {
+  //     return Reflect.deleteProperty(target, p)
+  //   },
+  // })
+  //
+  // proxy.foo = 'zzz'
+  // delete proxy.foo
+
+  const obj = {
+    get foo () {
+      console.log(this)
+      return this.bar
+    },
+  }
+
+  const proxy = new Proxy(obj, {
+    get (target, p, receiver) {
+      if (p === 'bar') {
+        return 'value - bar'
+      }
+      return Reflect.get(target, p, receiver)
+    },
+  })
+
+  console.log(proxy.foo)
+</script>
+</body>
+</html>
